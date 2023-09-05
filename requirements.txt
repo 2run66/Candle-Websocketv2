@@ -2,3 +2,4 @@ websocket-client
 redis
 websockets
 asyncio
+PyYAML==6.0
