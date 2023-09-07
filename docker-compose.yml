@@ -8,19 +8,5 @@ services:
     ports:
       - "8080:8080"  # Adjust port mapping as needed
     volumes:
-      - ./candle-websocket-api.py:/app/candle-websocket-api.py
+      - ./live_candle_websocket_api.py:/app/live_candle_websocket_api.py
       - ./commons.py:/app/commons.py
-    networks:
-      - redis-network
-    depends_on:
-      - redis
-
-  redis:
-    image: redis
-    ports:
-      - "6379:6379"
-    networks:
-      - redis-network
-
-networks:
-  redis-network:

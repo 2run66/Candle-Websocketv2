@@ -1,0 +1,29 @@
+pairs:
+  - ETHUSDT
+  - BTCUSDT
+  - AVAXUSDT
+  - BNBUSDT
+
+intervals:
+  - 1m
+  - 5m
+  - 15m
+  - 30m
+
+redis_port: 6379
+redis_host: "172.17.0.2"
+
+
+live_candle:
+  binance_url : "wss://stream.binance.com:9443/ws"
+  server_port : "4444"
+  server_url : "localhost"
+
+
+tick_data:
+  binance_url: "wss://stream.binance.com:9443/ws"
+  server_port: "4445"
+  server_url: "localhost"
+
+
+
