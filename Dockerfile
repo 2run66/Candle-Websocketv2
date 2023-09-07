@@ -13,6 +13,6 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Add your scripts
 COPY kline_websocket/candle-websocket-api.py .
-COPY commons.py .
+COPY commons/commons.py .
 
 CMD ["python", "candle-websocket-api.py"]
