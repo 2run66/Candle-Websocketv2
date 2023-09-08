@@ -8,6 +8,9 @@ from commons.commons import pairs, redis_host, redis_port
 from tick_data_websocket import binance_url, server_url, server_port, binance_keys, cache_keys
 
 
+cache_process = redis.Redis(host=redis_host, port=redis_port)
+
+
 def get_cached_data():
     websocket_data = {}
 
@@ -80,8 +83,7 @@ def binance_websocket_subscriber_process():
     ws.run_forever()
 
 
-if __name__ == "__main__":
-    cache_process = redis.Redis(host=redis_host, port=redis_port)
+def tick_data_websocket_server_process():
     websocket_thread = threading.Thread(target=websocket_server_process)
     binance_client_thread = threading.Thread(target=binance_websocket_subscriber_process)
     binance_client_thread.start()
