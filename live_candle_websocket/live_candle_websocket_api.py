@@ -8,6 +8,9 @@ from commons.commons import pairs, intervals, redis_host, redis_port
 from live_candle_websocket import binance_url, server_url, server_port, binance_keys, cache_keys
 
 
+cache_process = redis.Redis(host=redis_host, port=redis_port)
+
+
 def get_cached_data():
     websocket_data = {}
 
@@ -86,8 +89,7 @@ def binance_websocket_subscriber_process():
     ws.run_forever()
 
 
-if __name__ == "__main__":
-    cache_process = redis.Redis(host=redis_host, port=redis_port)
+def live_candle_websocket_service_process():
     websocket_thread = threading.Thread(target=websocket_server_process)
     binance_client_thread = threading.Thread(target=binance_websocket_subscriber_process)
     binance_client_thread.start()

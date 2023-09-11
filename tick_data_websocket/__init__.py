@@ -11,7 +11,7 @@ binance_keys = []
 
 
 def binance_naming(pair):
-    return f"{pair.lower()}@ticker"
+    return f"{pair.lower()}@ticker_1h"
 
 
 def cache_naming(pair):
@@ -26,7 +26,6 @@ def generate_keys():
 
 def __init():
     generate_keys()
-    print(cache_keys)
-    print(binance_keys)
+
 
 __init()

@@ -1,12 +1,16 @@
 version: '3'
 
 services:
-  my-app:
+  tick_data_websocket:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"  # Adjust port mapping as needed
-    volumes:
-      - ./live_candle_websocket_api.py:/app/live_candle_websocket_api.py
-      - ./commons.py:/app/commons.py
+
+  live_candle_websocket:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"  # Adjust port mapping as needed

@@ -28,7 +28,6 @@ def generate_keys():
 
 def __init():
     generate_keys()
-    print(cache_keys)
-    print(binance_keys)
+
 
 __init()

@@ -8,6 +8,9 @@ from commons.commons import pairs, redis_host, redis_port
 from tick_data_websocket import binance_url, server_url, server_port, binance_keys, cache_keys
 
 
+cache_process = redis.Redis(host=redis_host, port=redis_port)
+
+
 def get_cached_data():
     websocket_data = {}
 
@@ -24,10 +27,12 @@ def get_cached_data():
 def on_message(ws, message):
     candle_data = json.loads(message)
     try:
-        if candle_data["e"] == "24hrTicker":
+        if candle_data["e"] == "1hTicker":
             cache_name = cache_keys[candle_data["s"]]
             data = json.dumps(candle_data)
             cache_process.set(cache_name, data)
+        else:
+            print("no 1hrTicker")
     except Exception as e:
         print(e)
 
@@ -80,8 +85,7 @@ def binance_websocket_subscriber_process():
     ws.run_forever()
 
 
-if __name__ == "__main__":
-    cache_process = redis.Redis(host=redis_host, port=redis_port)
+def tick_data_websocket_service_process():
     websocket_thread = threading.Thread(target=websocket_server_process)
     binance_client_thread = threading.Thread(target=binance_websocket_subscriber_process)
     binance_client_thread.start()
